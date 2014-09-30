@@ -32,7 +32,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jclouds.proxy.internal.GuiceProxyConfig;
-
+import org.apache.commons.lang.Validate;
 
 /**
  * This client describes the Chef tags as AutoScalingGroup's
@@ -119,6 +119,15 @@ public class ChefClient extends AWSClient{
 
         return null;
     }
+
+    @Override
+    public List<String> listAttachedVolumes(String instanceId, boolean includeRoot) {
+        Validate.notEmpty(instanceId);
+        LOGGER.info(String.format("ChefClient doesn't support listAttachedVolumes for %s.", instanceId));
+        List<String> volumeIds = new ArrayList<String>();
+        return volumeIds;
+    }
+
 
 }
 
