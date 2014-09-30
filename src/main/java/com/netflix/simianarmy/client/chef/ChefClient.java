@@ -110,7 +110,7 @@ public class ChefClient extends AWSClient{
                 HostAndPort socket = HostAndPort.fromString(node.getName()).withDefaultPort(22);
 
                 //Use JschSshClient directly, had some problems when trying to go through jclouds
-                SshClient ssh = new JschSshClient(new GuiceProxyConfig(), BackoffLimitedRetryHandler.INSTANCE, socket, credentials, 10);
+                SshClient ssh = new JschSshClient(new GuiceProxyConfig(), BackoffLimitedRetryHandler.INSTANCE, socket, credentials, 3000);
                 LOGGER.info(String.format("Opening ssh connection to %s (%s)", instanceId, socket.toString()));
                 ssh.connect();
                 return ssh;
